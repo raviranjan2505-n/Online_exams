@@ -29,7 +29,9 @@ async function main() {
   await seedAdmin();
 
   const app = express();
-  app.use(cors({ origin: env.clientUrl }));
+  app.use(cors({ origin: [ env.clientUrl,
+    "https://online-exams-indol.vercel.app",
+    "http://localhost:5173",] }));
   app.use(express.json());
   app.use("/uploads", express.static(uploadDir));
   app.get("/api/health", (_req, res) => res.json({ ok: true }));
